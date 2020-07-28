@@ -1,1 +1,5 @@
-
+<div class="comments">
+  <ng-container *ngFor="let comment of listComments; trackBy: trackById">
+    <bird-comment-item [content]="comment"></bird-comment-item>
+  </ng-container>
+</div>

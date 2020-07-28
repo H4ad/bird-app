@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { CommentItemModule } from '../../../components/comment-item/comment-item.module';
 import { MyCommentsPageRoutingModule } from './my-comments-routing.module';
 import { MyCommentsPage } from './my-comments.page';
 
@@ -13,6 +14,7 @@ import { MyCommentsPage } from './my-comments.page';
     FormsModule,
     IonicModule,
     MyCommentsPageRoutingModule,
+    CommentItemModule,
   ],
   declarations: [
     MyCommentsPage,
