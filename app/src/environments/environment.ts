@@ -4,6 +4,13 @@
 
 export const environment = {
   production: false,
+  mockupEnabled: true,
+  config: {
+    dbName: '__bird',
+  },
+  keys: {
+    myComments: 'MY_COMMENTS_KEY',
+  },
 };
 
 /*

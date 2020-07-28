@@ -1,4 +1,5 @@
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import pt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -8,7 +9,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -23,6 +26,11 @@ registerLocaleData(pt);
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      name: environment.config.dbName,
+      driverOrder: ['indexeddb', 'localStorage'],
+    }),
   ],
   providers: [
     StatusBar,
