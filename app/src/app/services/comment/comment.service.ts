@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { CommentInteractor } from '../../interactors/comment/comment.interactor';
 import { CommentProxy } from '../../models/proxies/comment.proxy';
+import { PaginatedCommentProxy } from '../../models/proxies/paginated-comment.proxy';
 
 //#endregion
 
@@ -39,6 +40,26 @@ export class CommentService {
 
     if (!Array.isArray(success))
       return [];
+
+    return success;
+  }
+
+  /**
+   * Método que retorna todos os comentários criados na aplicação
+   *
+   * @param currentPage A página atual
+   * @param maxItens A quantidade máxima de itens que deve vir por paginação
+   */
+  public async getAllComments(currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
+    const { error, success } = await this.interactor.getAllComments(currentPage, maxItens);
+
+    if (error)
+      return {
+        pageCount: 1,
+        currentPage: 1,
+        items: [],
+        maxItens,
+      };
 
     return success;
   }

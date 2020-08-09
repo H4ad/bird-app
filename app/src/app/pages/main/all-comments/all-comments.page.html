@@ -1,0 +1,5 @@
+<div class="comments" (scroll)="onScroll($event)">
+  <ng-container *ngFor="let comment of listAllComments; trackBy: trackById">
+    <bird-comment-item [content]="comment"></bird-comment-item>
+  </ng-container>
+</div>
