@@ -2,6 +2,8 @@
   padding: 2.4rem;
   display: flex;
   flex-wrap: wrap;
+  max-height: 100%;
+  overflow-y: auto;
 
   &--item {
     width: calc(50% - 1.2rem);
@@ -28,7 +30,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 20rem;
+    height: 15rem;
     position: relative;
     overflow: hidden;
 
