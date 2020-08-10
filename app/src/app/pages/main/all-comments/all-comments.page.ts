@@ -3,6 +3,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { map, throttleTime } from 'rxjs/operators';
+import { TrackablePage } from '../../../common/trackable.page';
 
 import { CommentProxy } from '../../../models/proxies/comment.proxy';
 import { PaginatedCommentProxy } from '../../../models/proxies/paginated-comment.proxy';
@@ -18,7 +19,7 @@ import { CommentService } from '../../../services/comment/comment.service';
   templateUrl: './all-comments.page.html',
   styleUrls: ['./all-comments.page.scss'],
 })
-export class AllCommentsPage implements OnInit, OnDestroy {
+export class AllCommentsPage extends TrackablePage implements OnInit, OnDestroy {
 
   //#region Constructor
 
@@ -28,6 +29,8 @@ export class AllCommentsPage implements OnInit, OnDestroy {
   constructor(
     private readonly comment: CommentService,
   ) {
+    super();
+
     this.currentScrollSubscription = this.currentScrollFrameSubject.pipe(
       throttleTime(16),
       map(currentDiv => {
@@ -117,18 +120,6 @@ export class AllCommentsPage implements OnInit, OnDestroy {
     this.listAllComments = [...this.listAllComments, ...this.paginatedComment.items];
 
     this.isLoadingComments = false;
-  }
-
-  /**
-   * Método que retorna a identificação do item da lista para ser usado
-   * para verificar se o item já existe na lista, caso exista, não
-   * deve fazer alterações no HTML.
-   *
-   * @param index O indice desse item na lista
-   * @param value As informações do item
-   */
-  public trackById(index: number, value: CommentProxy): number {
-    return value.id;
   }
 
   /**
