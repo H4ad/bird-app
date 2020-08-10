@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { CategoryItemModule } from '../../../components/category-item/category-item.module';
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { CategoriesPage } from './categories.page';
@@ -13,6 +14,7 @@ import { CategoriesPage } from './categories.page';
     FormsModule,
     IonicModule,
     CategoriesPageRoutingModule,
+    CategoryItemModule,
   ],
   declarations: [
     CategoriesPage,

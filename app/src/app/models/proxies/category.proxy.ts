@@ -30,3 +30,15 @@ export interface CategoryProxy {
   comments?: CommentProxy[];
 
 }
+
+/**
+ * Método que retorna uns valores de uma categoria
+ */
+export function getFakeCategoryProxy(): CategoryProxy {
+  return {
+    id: 1,
+    name: 'Typescript',
+    color: '#FFC542',
+    comments: [],
+  };
+}
