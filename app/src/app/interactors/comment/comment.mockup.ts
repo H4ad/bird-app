@@ -1,7 +1,9 @@
 //#region Imports
 
+import { delay } from 'rxjs/operators';
 import { HttpAsyncResult } from '../../models/interfaces/http-async-result';
 import { StorageAsyncResult } from '../../models/interfaces/storage-async-result';
+import { CreateCommentPayload } from '../../models/payloads/create-comment.payload';
 import { CommentProxy, getFakeCommentProxy } from '../../models/proxies/comment.proxy';
 import { PaginatedCommentProxy } from '../../models/proxies/paginated-comment.proxy';
 
@@ -47,7 +49,6 @@ export async function getAllCommentsMockup(currentPage: number, maxItens: number
 /**
  * Método que retorna os comentários de uma categoria paginados mockados
  *
- *
  * @param categoryId A identificação da categoria
  * @param currentPage A página atual
  * @param maxItens A quantidade máxima de itens que deve vir por paginação
@@ -66,4 +67,17 @@ export async function getCommentsByCategoryIdMockup(categoryId: number, currentP
   return {
     success: paginated,
   };
+}
+
+/**
+ * Método que retorna as informações de um comentário criado com sucesso
+ *
+ * @param payload As informações para a criação do comentário
+ */
+export async function createCommentMockup(payload: CreateCommentPayload): Promise<HttpAsyncResult<CommentProxy>> {
+  await new Promise(resolve => setTimeout(resolve, 2_000));
+
+  return {
+    success: getFakeCommentProxy(),
+  }
 }

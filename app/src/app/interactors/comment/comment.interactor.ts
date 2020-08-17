@@ -8,9 +8,10 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../../environments/environment';
 import { HttpAsyncResult } from '../../models/interfaces/http-async-result';
 import { StorageAsyncResult } from '../../models/interfaces/storage-async-result';
+import { CreateCommentPayload } from '../../models/payloads/create-comment.payload';
 import { CommentProxy } from '../../models/proxies/comment.proxy';
 import { PaginatedCommentProxy } from '../../models/proxies/paginated-comment.proxy';
-import { getAllCommentsMockup, getCommentsByCategoryIdMockup, getMyCommentsMockup } from './comment.mockup';
+import { createCommentMockup, getAllCommentsMockup, getCommentsByCategoryIdMockup, getMyCommentsMockup } from './comment.mockup';
 
 //#endregion
 
@@ -87,6 +88,21 @@ export class CommentInteractor {
       .replace('{maxItens}', maxItens.toString());
 
     return await this.http.get<PaginatedCommentProxy>(url)
+      .toPromise()
+      .then(success => ({ success, error: undefined }))
+      .catch(error => ({ success: undefined, error  }));
+  }
+
+  /**
+   * Método que cria um novo comentário
+   *
+   * @param payload As informações para a criação do comentário
+   */
+  public async createComment(payload: CreateCommentPayload): Promise<HttpAsyncResult<CommentProxy>> {
+    if (environment.mockupEnabled)
+      return await createCommentMockup(payload);
+
+    return await this.http.post<CommentProxy>(environment.api.comment.create, payload)
       .toPromise()
       .then(success => ({ success, error: undefined }))
       .catch(error => ({ success: undefined, error  }));

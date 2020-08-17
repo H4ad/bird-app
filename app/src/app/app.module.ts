@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import pt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -27,6 +28,7 @@ registerLocaleData(pt);
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     IonicStorageModule.forRoot({
       name: environment.config.dbName,
       driverOrder: ['indexeddb', 'localStorage'],

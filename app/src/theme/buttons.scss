@@ -65,6 +65,12 @@
     font-size: 1.6rem;
   }
 
+  &[disabled] {
+    opacity: .5;
+    cursor: none;
+    pointer-events: none;
+  }
+
   span {
     font-size: 1.6rem;
     font-weight: bold;
