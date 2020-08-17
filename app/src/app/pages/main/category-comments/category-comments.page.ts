@@ -53,15 +53,6 @@ export class CategoryCommentsPage extends TrackablePage implements OnInit, OnDes
 
   //#endregion
 
-  //#region Private Properties
-
-  /**
-   * A identificação da categoria
-   */
-  private readonly categoryId: number;
-
-  //#endregion
-
   //#region Private Subscriptions
 
   /**
@@ -96,6 +87,11 @@ export class CategoryCommentsPage extends TrackablePage implements OnInit, OnDes
    * Diz se está carregando mais itens
    */
   public isLoadingData: boolean;
+
+  /**
+   * A identificação da categoria
+   */
+  public readonly categoryId: number;
 
   //#endregion
 
