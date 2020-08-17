@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AvatarItem } from '../../../models/interfaces/avatar-item';
 
 //#endregion
 
@@ -34,12 +35,34 @@ export class CreateCommentPage {
 
   //#endregion
 
-  //#region Private Properties
+  //#region Public Properties
 
   /**
    * A identificação da categoria
    */
-  private readonly categoryId: number;
+  public readonly categoryId: number;
+
+  /**
+   * A lista de avatares disponíveis para o usuário
+   */
+  public readonly listAvatars: AvatarItem[] = [
+    {
+      personEmoji: 'assets/images/avatar_1.png',
+      personColor: '#FFC542',
+    },
+    {
+      personEmoji: 'assets/images/avatar_2.png',
+      personColor: '#3DD598',
+    },
+    {
+      personEmoji: 'assets/images/avatar_3.png',
+      personColor: '#FF575F',
+    },
+    {
+      personEmoji: 'assets/images/avatar_4.png',
+      personColor: '#755FE2',
+    },
+  ];
 
   //#endregion
 

@@ -1,8 +1,8 @@
 <div class="comments" (scroll)="onScroll($event)">
-  <div routerLink="/main/categories" class="bird--back-button ion-activatable">
+  <button routerLink="/main/categories" class="bird--back-button ion-activatable">
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon src="assets/images/left-arrow.svg"></ion-icon>
-  </div>
+  </button>
   <div [routerLink]="['/main/categories', categoryId, 'comment']" class="bird--add-item ion-activatable">
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon src="assets/images/add_icon.svg"></ion-icon>
