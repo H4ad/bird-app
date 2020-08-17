@@ -10,7 +10,7 @@ import { HttpAsyncResult } from '../../models/interfaces/http-async-result';
 import { StorageAsyncResult } from '../../models/interfaces/storage-async-result';
 import { CommentProxy } from '../../models/proxies/comment.proxy';
 import { PaginatedCommentProxy } from '../../models/proxies/paginated-comment.proxy';
-import { getAllCommentsMockup, getMyCommentsMockup } from './comment.mockup';
+import { getAllCommentsMockup, getCommentsByCategoryIdMockup, getMyCommentsMockup } from './comment.mockup';
 
 //#endregion
 
@@ -61,6 +61,28 @@ export class CommentInteractor {
       return await getAllCommentsMockup(currentPage, maxItens);
 
     const url = environment.api.comment.list
+      .replace('{currentPage}', currentPage.toString())
+      .replace('{maxItens}', maxItens.toString());
+
+    return await this.http.get<PaginatedCommentProxy>(url)
+      .toPromise()
+      .then(success => ({ success, error: undefined }))
+      .catch(error => ({ success: undefined, error  }));
+  }
+
+  /**
+   * Método que retorna os comentários de uma categoria em especifico
+   *
+   * @param categoryId A identificação da categoria
+   * @param currentPage A página atual
+   * @param maxItens A quantidade máxima de itens que deve vir por paginação
+   */
+  public async getCommentsByCategoryId(categoryId: number, currentPage: number, maxItens: number): Promise<HttpAsyncResult<PaginatedCommentProxy>> {
+    if (environment.mockupEnabled)
+      return await getCommentsByCategoryIdMockup(categoryId, currentPage, maxItens);
+
+    const url = environment.api.comment.listByCategoryId
+      .replace('{categoryId}', categoryId.toString())
       .replace('{currentPage}', currentPage.toString())
       .replace('{maxItens}', maxItens.toString());
 

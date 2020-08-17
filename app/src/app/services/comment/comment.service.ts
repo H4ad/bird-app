@@ -64,6 +64,27 @@ export class CommentService {
     return success;
   }
 
+  /**
+   * Método que retorna os comentários de uma categoria em especifico
+   *
+   * @param categoryId A identificação da categoria
+   * @param currentPage A página atual
+   * @param maxItens A quantidade máxima de itens que deve vir por paginação
+   */
+  public async getCommentsByCategoryId(categoryId: number, currentPage: number, maxItens: number): Promise<PaginatedCommentProxy> {
+    const { error, success } = await this.interactor.getCommentsByCategoryId(categoryId, currentPage, maxItens);
+
+    if (error)
+      return {
+        pageCount: 1,
+        currentPage: 1,
+        items: [],
+        maxItens,
+      };
+
+    return success;
+  }
+
   //#endregion
 
 }

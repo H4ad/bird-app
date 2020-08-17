@@ -15,6 +15,7 @@ export const environment = {
     baseUrl: 'http://localhost:3000',
     comment: {
       list: '/comments?page={currentPage}&maxItens={maxItens}',
+      listByCategoryId: '/comments?page={currentPage}&maxItens={maxItens}&categoryId={categoryId}',
     },
     categories: {
       list: '/categories?page={currentPage}&maxItens={maxItens}',

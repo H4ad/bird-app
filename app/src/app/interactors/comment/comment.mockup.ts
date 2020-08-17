@@ -43,3 +43,27 @@ export async function getAllCommentsMockup(currentPage: number, maxItens: number
     success: paginated,
   };
 }
+
+/**
+ * Método que retorna os comentários de uma categoria paginados mockados
+ *
+ *
+ * @param categoryId A identificação da categoria
+ * @param currentPage A página atual
+ * @param maxItens A quantidade máxima de itens que deve vir por paginação
+ */
+export async function getCommentsByCategoryIdMockup(categoryId: number, currentPage: number, maxItens: number): Promise<HttpAsyncResult<PaginatedCommentProxy>> {
+  const paginated = {
+    pageCount: 5,
+    currentPage,
+    items: [],
+    maxItens,
+  };
+
+  for (let i = 0; i < maxItens; i++)
+    paginated.items.push(getFakeCommentProxy());
+
+  return {
+    success: paginated,
+  };
+}
