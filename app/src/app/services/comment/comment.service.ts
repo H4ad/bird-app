@@ -1,6 +1,7 @@
 //#region Imports
 
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 import { CommentInteractor } from '../../interactors/comment/comment.interactor';
 import { CreateCommentPayload } from '../../models/payloads/create-comment.payload';
@@ -92,10 +93,15 @@ export class CommentService {
    * @param payload As informações para a criação do comentário
    */
   public async createComment(payload: CreateCommentPayload): Promise<[boolean, string]> {
-    const { error } = await this.interactor.createComment(payload);
+    const { error, success } = await this.interactor.createComment(payload);
 
     if (error)
       return [false, 'Ocorreu um erro ao criar, por favor, tente novamente.'];
+
+    const { error: errorOnSave } = await this.interactor.saveCommentCreated(success);
+
+    if (errorOnSave)
+      console.error(errorOnSave);
 
     return [true, 'Comentário criado com sucesso!'];
   }
