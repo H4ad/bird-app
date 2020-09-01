@@ -3,6 +3,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { CategoryEntity } from '../../typeorm/entities/category.entity';
 
 //#endregion
 
@@ -35,10 +36,10 @@ export class TypeOrmService implements TypeOrmOptionsFactory {
       migrationsRun: this.config.get<boolean>('DB_MIGRATIONS_RUN'),
       logging: this.config.get<boolean>('DB_LOGGING'),
       entities: [
-        __dirname + '/../../../typeorm/entities/**/*{.entity.ts,.entity.js}',
+        __dirname + '/../../typeorm/entities/**/*{.entity.ts,.entity.js}',
       ],
       migrations: [
-        __dirname + '/../../../typeorm/migrations/**/*{.ts,.js}',
+        __dirname + '/../../typeorm/migrations/**/*{.ts,.js}',
       ],
     };
 
