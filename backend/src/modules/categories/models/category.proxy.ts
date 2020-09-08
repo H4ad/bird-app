@@ -4,6 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { BaseCrudProxy } from '../../../common/base-crud.proxy';
 import { CategoryEntity } from '../../../typeorm/entities/category.entity';
+import { CommentProxy } from '../../comments/models/comment.proxy';
 
 //#endregion
 
@@ -24,6 +25,7 @@ export class CategoryProxy extends BaseCrudProxy {
 
     this.name = entity.name;
     this.color = entity.color;
+    this.comments = Array.isArray(entity.comments) && entity.comments.map(comment => new CommentProxy(comment)) || [];
   }
 
   //#endregion
@@ -41,6 +43,12 @@ export class CategoryProxy extends BaseCrudProxy {
    */
   @ApiProperty()
   color: string;
+
+  /**
+   * A lista de comentários dessa categoria
+   */
+  @ApiProperty({ type: () => CommentProxy, isArray: true })
+  comments: CommentProxy[];
 
   //#endregion
 

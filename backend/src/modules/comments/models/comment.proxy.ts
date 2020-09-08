@@ -3,6 +3,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { BaseCrudProxy } from '../../../common/base-crud.proxy';
+import { CategoryEntity } from '../../../typeorm/entities/category.entity';
 import { CommentEntity } from '../../../typeorm/entities/comment.entity';
 import { CategoryProxy } from '../../categories/models/category.proxy';
 
@@ -28,7 +29,7 @@ export class CommentProxy extends BaseCrudProxy {
     this.personEmoji = entity.personEmoji;
     this.personColor = entity.personColor;
     this.categoryId = entity.categoryId;
-    this.category = entity.category;
+    this.category = entity.category instanceof CategoryEntity && new CategoryProxy(entity.category) || void 0;
   }
 
   //#endregion
@@ -66,7 +67,7 @@ export class CommentProxy extends BaseCrudProxy {
   /**
    * As informações sobre a categoria
    */
-  @ApiProperty()
+  @ApiProperty({ type: () => CategoryProxy })
   public category?: CategoryProxy;
 
 }
