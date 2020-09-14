@@ -129,7 +129,7 @@ export class CategoryCommentsPage extends TrackablePage implements OnInit, OnDes
 
     const currentPage = this.paginatedComment?.currentPage || 0;
 
-    this.paginatedComment = await this.comment.getCommentsByCategoryId(this.categoryId, currentPage + 1, 8);
+    this.paginatedComment = await this.comment.getCommentsByCategoryId(this.categoryId, currentPage + 1, 5);
     this.listComments = [...this.listComments, ...this.paginatedComment.items];
 
     this.isLoadingData = false;
