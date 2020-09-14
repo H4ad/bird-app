@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import pt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 
 registerLocaleData(pt);
 
@@ -39,6 +40,7 @@ registerLocaleData(pt);
     SplashScreen,
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }
   ],
   bootstrap: [
     AppComponent,
