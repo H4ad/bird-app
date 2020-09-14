@@ -32,7 +32,7 @@ registerLocaleData(pt);
     FormsModule,
     IonicStorageModule.forRoot({
       name: environment.config.dbName,
-      driverOrder: ['indexeddb', 'localStorage'],
+      driverOrder: ['indexeddb', 'sqlite', 'websql'],
     }),
   ],
   providers: [
@@ -40,7 +40,7 @@ registerLocaleData(pt);
     SplashScreen,
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
   ],
   bootstrap: [
     AppComponent,
