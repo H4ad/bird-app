@@ -101,7 +101,7 @@ export class CommentService {
     });
 
     if (!entity)
-      throw new NotFoundException('A categoria que você procura não existe ou foi removida.');
+      throw new NotFoundException('O comentário que você procura não existe ou foi removido.');
 
     return entity;
   }
